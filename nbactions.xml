@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-Dmodel.dir="/home/slava/opt/models_ru" -Dperson.file="ru-ner-person-new.bin" -Dsent.file="ru-sent-new.bin" -Dtoken.file="ru-token-new.bin" -Dinput.file="/home/slava/opt/data_ru/result_Tokenized.txt" -Dfile.encoding="utf-8" -Dresult.file="/home/slava/opt/data_ru/out.txt" -classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -Dmodel.dir="/home/slava/opt/models_ru" -Dperson.file="ru-ner-person-new.bin" -Dsent.file="ru-sent-new.bin" -Dtoken.file="ru-token-new.bin" -Dinput.file="/home/slava/opt/data_ru/result_Tokenized.txt" -Dfile.encoding="utf-8" -Dresult.file="/home/slava/opt/data_ru/out.txt" -classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+            </properties>
+        </action>
+        <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-Dmodel.dir="/home/slava/opt/models_ru" -Dperson.file="ru-ner-person-new.bin" -Dsent.file="ru-sent-new.bin" -Dtoken.file="ru-token-new.bin" -Dinput.file="/home/slava/opt/data_ru/result_Tokenized.txt" -Dfile.encoding="utf-8" -Dresult.file="/home/slava/opt/data_ru/out.txt" -classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+            </properties>
+        </action>
+    </actions>
