@@ -9,12 +9,12 @@ public final class Entity {
     
     public String Name()
     {
-        return this.name.trim();
+        return this.name;
     }
     
     public void Name(String name)
     {
-        this.name = name;
+        this.name = name.trim();
     }
     
     public String Type()
@@ -38,6 +38,7 @@ public final class Entity {
     }
     
     // TODO: provide uri fomat for entity
+    //delete all dots + replace whitespace with '_'
     public String URIName()
     {
         return this.Name();

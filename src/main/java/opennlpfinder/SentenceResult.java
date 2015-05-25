@@ -41,9 +41,9 @@ public class SentenceResult {
                 // separator
                 fullname.append(this.getTokens()[ti]).append(" ");
             }
+            // add recognized value to array
             EntitiesList.add(new Entity(fullname.toString(), name.getType(),
                     this.getProbs()[index]));
-            // add recognized value to array
             index++;
         }
         return EntitiesList;

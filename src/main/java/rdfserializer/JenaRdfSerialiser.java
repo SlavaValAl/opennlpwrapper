@@ -11,12 +11,15 @@ public class JenaRdfSerialiser {
             String baseUri) {
 
         JenaRdfSerialiser.rdfmodel = ModelFactory.createDefaultModel();
-
+        String URItemplate = baseUri + "/%s/%s";
         for (Entity entity : entities) {
-            rdfmodel.createResource(baseUri + entity.Name())
+            rdfmodel.createResource(String.format(URItemplate,
+                                                  entity.Type(),
+                                                  entity.Name()))
                  .addProperty(VCARD.FN, entity.Name())
                  .addProperty(VCARD.CATEGORIES, entity.Type())
-                 .addProperty(VCARD.Other, String.valueOf(entity.Probability()));
+                 .addProperty(VCARD.Other, String.format("%1$.3f",
+                                                         entity.Probability()));
         }
 
         // now write the model in XML form to a file

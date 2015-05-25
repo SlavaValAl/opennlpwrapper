@@ -14,8 +14,7 @@ public class OpenNLPManager {
         myfinder.singleModelSearch();
         // parse found results to entities
         myfinder.ParseResults();
-        // TODO: make it based on entities type
-        String baseURI = "http://sstu.ru/persons/";
+        String baseURI = "http://sstu.ru";
         // pass results to serializer & get rdf model as result
         Model rdfmodel = JenaRdfSerialiser.ConvertEntitiesToRdf(myfinder.GetResults(),
             baseURI);
