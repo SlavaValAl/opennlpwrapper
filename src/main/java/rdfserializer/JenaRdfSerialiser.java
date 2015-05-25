@@ -7,8 +7,8 @@ import opennlpfinder.Entity;
 public class JenaRdfSerialiser {
         private static Model rdfmodel;
 
-        public static Model ConvertEntitiesToRdf(Iterable<Entity> entities,
-            String baseUri) {
+    public static Model ConvertEntitiesToRdf(Iterable<Entity> entities,
+        String baseUri) {
 
         JenaRdfSerialiser.rdfmodel = ModelFactory.createDefaultModel();
         String URItemplate = baseUri + "/%s/%s";

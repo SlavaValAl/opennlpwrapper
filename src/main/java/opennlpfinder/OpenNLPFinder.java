@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -320,31 +321,48 @@ public class OpenNLPFinder {
 
     // Return folder with model files based on CLI option
     private File GetModelDir() throws IOException {
-        return new File(System.getProperty("model.dir"));
+        return new File (
+            Helper.GetCorrectPath(
+                System.getProperty("model.dir"),
+                GetDefaultDataPath()
+            )
+        );
     }
 
     // Return token model file based on CLI option
     private File GetTokenModel()throws IOException {
-        return new File(GetModelDir(), System.getProperty("token.file"));
+        return Helper.GetCorrectFilePath(GetModelDir(),
+                                         System.getProperty("token.file"));
     }
 
     // Return sentence detector model file based on CLI option
     private File GetSentenceModel()throws IOException {
-        return new File(GetModelDir(), System.getProperty("sent.file"));
+        return Helper.GetCorrectFilePath(GetModelDir(),
+                                         System.getProperty("sent.file"));
     }
 
     // Return person model file based on CLI option
     private File GetFinderModel()throws IOException {
-        return new File(GetModelDir(), System.getProperty("person.file"));
+        return Helper.GetCorrectFilePath(GetModelDir(),
+                                         System.getProperty("person.file"));
     }
 
-    // Return specific model file based on CLI option
+    // Return source test based on CLI option
     private String GetInputText() throws IOException {
-        String inputFilePath = System.getProperty("input.file");
+        String inputFilePath = Helper.GetCorrectPath(
+            System.getProperty("input.file"),
+            Paths.get(GetDefaultDataPath(),"input.txt").toString());
+
         String inputFileEncoding = System.getProperty("file.encoding");
         byte[] encoded = Files.readAllBytes(Paths.get(inputFilePath));
 
         return new String(encoded, inputFileEncoding);
+    }
+
+    // Return default data path
+    public static String GetDefaultDataPath()throws IOException {
+        return Paths.get(System.getProperty("user.dir"),
+                         "ProgramData").toString();
     }
 
     // Remove conflict results for multiModel regognition

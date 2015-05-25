@@ -39,6 +39,7 @@ public final class Entity {
     
     // TODO: provide uri fomat for entity
     //delete all dots + replace whitespace with '_'
+    // Example "Е.И. Типушову" -> "Е_И_Типушову"
     public String URIName()
     {
         return this.Name();
