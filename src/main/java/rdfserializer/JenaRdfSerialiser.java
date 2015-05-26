@@ -15,7 +15,7 @@ public class JenaRdfSerialiser {
         for (Entity entity : entities) {
             rdfmodel.createResource(String.format(URItemplate,
                                                   entity.Type(),
-                                                  entity.Name()))
+                                                  entity.URIName()))
                  .addProperty(VCARD.FN, entity.Name())
                  .addProperty(VCARD.CATEGORIES, entity.Type())
                  .addProperty(VCARD.Other, String.format("%1$.3f",

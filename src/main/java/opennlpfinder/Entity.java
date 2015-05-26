@@ -5,6 +5,7 @@ import java.util.Objects;
 public final class Entity {
     private String name;
     private String type;
+    public String uriName;
     private double probability;
     
     public String Name()
@@ -12,7 +13,7 @@ public final class Entity {
         return this.name;
     }
     
-    public void Name(String name)
+    private void Name(String name)
     {
         this.name = name.trim();
     }
@@ -22,7 +23,7 @@ public final class Entity {
         return this.type;
     }
     
-    public void Type(String type)
+    private void Type(String type)
     {
         this.type = type;
     }
@@ -32,23 +33,25 @@ public final class Entity {
         return this.probability;
     }
     
-    public void Probability(double probability)
+    private void Probability(double probability)
     {
         this.probability = probability;
     }
     
-    // TODO: provide uri fomat for entity
-    //delete all dots + replace whitespace with '_'
-    // Example "Е.И. Типушову" -> "Е_И_Типушову"
+    private void URIName(String name) {
+        this.uriName = name.replaceAll("[^а-яА-Я]", "");
+    }
+
     public String URIName()
     {
-        return this.Name();
+        return this.uriName;
     }
 
     public Entity(String name, String type, double probability){
         this.Name(name);
         this.Type(type);
         this.Probability(probability);
+        this.URIName(this.Name());
     }
     
     @Override
